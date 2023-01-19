@@ -1,0 +1,12 @@
+sequenceDiagram
+
+    participant browser
+    participant server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    activate server
+    server-->>browser: HTML document
+    user -->> browser: writes note, clicks submit
+    browser-->>server: POST request to server as JSON with data (content/date)
+    browser: updates the list without redirect or reload, no further HTTP req
+    deactivate server
