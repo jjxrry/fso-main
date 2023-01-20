@@ -9,17 +9,15 @@ const Header = (props) => {
 const Content = (props) => {
   return(
     <>
-      <Part part = {part1} exercise = {exercise1}/>
-      <Part part = {part2} exercise = {exercise2}/>
-      <Part part = {part3} exercise = {exercise3}/>
-    </>
-  )
-}
-
-const Part = (props) => {
-  return (
-    <>
-      {props.part} {props.exercise}
+      <p>
+        {props.part1} {props.exercises1}
+      </p>
+      <p>
+        {props.part2} {props.exercises2}
+      </p>
+      <p>
+        {props.part3} {props.exercises3}
+      </p>
     </>
   )
 }
