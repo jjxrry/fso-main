@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import Note from './components/Note'
+import Contacts from './components/Contacts'
 import Filter from './components/Filter'
 import Submit from './components/Submit'
-import noteService from './services/notes'
+import contactService from './services/contactServices'
 import Success from './components/Success'
 import Error from './components/Error'
 import './index.css'
@@ -16,7 +16,7 @@ const App = () => {
   const [successMessage, setSuccessMessage] = useState(null);
 
   useEffect(() => {
-    noteService
+    contactService
       .getAll()
       .then(initialContact => {
         setPersons(initialContact)
@@ -35,7 +35,7 @@ const App = () => {
       const changedContact = { ...contact, number: newNumber}
 
       return (
-        noteService
+        contactService
           .replace(newName, changedContact)
           .then(() => {
             setSuccessMessage(`${newName} number has been updated`)
@@ -57,7 +57,7 @@ const App = () => {
           })
         )
     }
-    noteService
+    contactService
       .create(nameObject)
       .then(returnContact => {
         setSuccessMessage(`${newName} number has been added`)
@@ -73,7 +73,7 @@ const App = () => {
   
   const deleteContact =(id) => {
     const deleted = persons.find(n => n.id === id)
-    noteService
+    contactService
       .deletion(deleted)
       .then(() => 
         setSuccessMessage(`contact ${deleted.name} has been deleted`),
@@ -116,7 +116,7 @@ const App = () => {
       <Submit addContact={addContact} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumChange={handleNumChange}/>
       <h2>Numbers</h2>
       {persons.filter(user => user.name.toLowerCase().includes(newFilter)).map(person =>
-        <Note 
+        <Contacts 
         key={person.id}
         person={person}
         deleteContact={() => deleteContact(person.id)}

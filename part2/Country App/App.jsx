@@ -33,7 +33,7 @@ const App = () => {
       <Filter newFilter={newFilter} handleFilter={handleFilter}/>
       {results.filter(cinfo => cinfo.name.official.toLowerCase().includes(newFilter)).map(info =>
       <Results 
-      key={info.id} 
+      key={info.cca2} 
       countryNames={info.name} 
       countryInfo={info}
       />
